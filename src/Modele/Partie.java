@@ -4,16 +4,13 @@ import java.util.TreeSet;
 
 public class Partie {
     //suggestion d'amelioration : faire une liste de tas plutot qu'un set, pour y acceder plus simplement avec lesTas[numTas]
-
-    //peut etre optionnel, reverifier a la fin
-    private int numPartie;
     private Set<Tas> lesTas;
 
     //a l'initialisation la partie cree tout les tas
     public Partie(int nbTas){
         lesTas = new TreeSet<>();
         for(int i=1;i<=nbTas;i++){
-            lesTas.add(new Tas(i));
+            lesTas.add(creerTas(i));
         }
     }
 
@@ -23,18 +20,15 @@ public class Partie {
     }
 
     //enleve n allumettes au tas m
-    public boolean enleverAllumettes (int num , int nbAllumettes){
-        try {
+    public boolean enleverAllumettes (int numTas , int nbAllumettes) throws WrongInputException {
             for (Tas tas: lesTas) {
-                if (tas.getNumTas() == num) {
-                    return tas.supprimerAllumettes(nbAllumettes);
+                if (tas.getNumTas() == numTas) {
+                    tas.supprimerAllumettes(nbAllumettes);
+                    return true;
                 }
             }
-        }catch (Exception e){
-            throw new RuntimeException(e.getMessage());
-        }
+            throw new WrongInputException("Le tas demandé n'existe pas");
 
-        return false ;
     }
     public boolean finDePartie() {
         for (Tas tas : lesTas) {

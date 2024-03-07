@@ -2,12 +2,11 @@ package Controleur;
 import Vue.*;
 import Modele.*;
 
-import javax.naming.ldap.Control;
-import java.util.Set;
+
 import java.util.concurrent.TimeUnit;
 
 public class ControleurJeuNim {
-    private Ihm ihm;
+    private final Ihm ihm;
 
     public ControleurJeuNim(Ihm ihm){
         this.ihm=ihm;
@@ -35,35 +34,49 @@ public class ControleurJeuNim {
         jeu.creerJoueur(nomJ2);
         //joueurs créés
 
+        //jouer une partie
         jouerPartie(jeu);
 
+        //rejouer tant que l'utilisateur le veut
         while(ihm.ihmRejouer().equals("y")){
-
+            jeu.nouvellePartie(nbTas);
+            jouerPartie(jeu);
         }
-        //ici tout le déroulement de la partie, a chaque étape de la partie on a un appel a la fonction ihm et un retour de données
+        //a la fin afficher
+        ihm.affichage("\nFin de la Session, voici le tableau des scores : \n");
+
     }
-    public String jouerPartie(Jeu jeu) throws InterruptedException {
+    public void jouerPartie(Jeu jeu){
         //tant qu'il n'y a pas de gagnant
             while(!jeu.testerGagnant()){
                 //afficher le jeu
                 ihm.affichage(jeu.toString());
 
                 //inviter le joueur a jouer
-                String coup = ihm.ihmDemanderCoup(jeu.joueurSuivant());
-                String[] coupListe = coup.split(" ");
-                int m = Integer.parseInt(coupListe[0]);
-                int n = Integer.parseInt(coupListe[1]);
-                //jouer le coup
-                try {
-                    jeu.jouerCoup(m,n);
-                } catch (Exception e) {
-                    //ici il faut generer des exceptions selon le coup entré(est ce que le tas existe, est ce qu'il y a assez d'allumettes dans le tas)
-                    ihm.affichage(e.getMessage());
-                    //ici je met une pause de 3 secondes pour que la personne ait le temps de voir l'erreur avant de réafficher le jeu
-                    TimeUnit.SECONDS.sleep(3);
-                    return jouerPartie(jeu);
+                String joueurCourant=jeu.joueurSuivant();
+                String coup = ihm.ihmDemanderCoup(joueurCourant);
+                //si le coup est mauvais alors reessayer a l'infini
+                while(true){
+                    try {
+                        String[] coupListe = coup.split(" ");
+                        int m = Integer.parseInt(coupListe[0]);
+                        int n = Integer.parseInt(coupListe[1]);
+                        jeu.jouerCoup(m, n);
+                        break;
+                    } catch (Exception e1) {
+                        //ici il faut generer des exceptions selon le coup entré(est ce que le tas existe, est ce qu'il y a assez d'allumettes dans le tas)
+                        ihm.affichage(e1.getMessage());
+                        //ici je met une pause de 3 secondes pour que la personne ait le temps de voir l'erreur avant de réafficher le jeu
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (Exception e2) {
+                            ihm.affichage(e2.getMessage());
+                        }
+                        coup = ihm.ihmDemanderCoup(joueurCourant);
+                    }
                 }
             }
             //afficher le gagnant de la partie en cours
+        ihm.affichage("\nFélicitations "+jeu.getJoueurCourant()+", vous avez remporté la partie!\n");
     }
 }

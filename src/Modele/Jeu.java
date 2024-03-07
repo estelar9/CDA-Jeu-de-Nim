@@ -22,7 +22,7 @@ public class Jeu {
     }
 
     public String joueurSuivant() {
-        int suivant=(joueurCourant.getNumJoueur() == Joueur.getDenierJoueur())?joueurCourant.getNumJoueur()+1:1;
+        int suivant=(joueurCourant.getNumJoueur() == (Joueur.getDernierJoueur()-1))?1:joueurCourant.getNumJoueur()+1;
         for (Joueur j : lesJoueurs.keySet()) {
             if (j.getNumJoueur() == suivant) {
                 joueurCourant = j;
@@ -34,5 +34,15 @@ public class Jeu {
     public boolean testerGagnant(){
         return partieEnCours.finDePartie();
     }
+    public void jouerCoup(int m, int n) throws WrongInputException {
+        partieEnCours.enleverAllumettes(m,n);
+    }
 
+    public Joueur getJoueurCourant() {
+        return joueurCourant;
+    }
+
+    public void nouvellePartie(int nbTas){
+        partieEnCours=creerPartie(nbTas);
+    }
 }

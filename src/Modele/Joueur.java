@@ -1,17 +1,17 @@
 package Modele;
 
-public class Joueur {
-    private int numJoueur ;
-    private String nomJoueur;
-    private static int denierJoueur = 0 ;
+public class Joueur implements Comparable<Joueur>{
+    private final int numJoueur ;
+    private final String nomJoueur;
+    private static int denierJoueur = 1 ;
 
-    public static int getDenierJoueur() {
-        return denierJoueur;
+    public Joueur(String nomJoueur) {
+        this.nomJoueur = nomJoueur;
+        this.numJoueur = denierJoueur++;
     }
 
-    public Joueur(String nomJouer) {
-        this.nomJoueur = nomJoueur;
-        this.numJoueur = ++denierJoueur;
+    public static int getDernierJoueur() {
+        return denierJoueur;
     }
 
     public int getNumJoueur() {
@@ -20,5 +20,10 @@ public class Joueur {
 
     public String getNomJoueur() {
         return nomJoueur;
+    }
+
+    @Override
+    public int compareTo(Joueur o) {
+        return numJoueur-o.getNumJoueur();
     }
 }

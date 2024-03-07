@@ -24,9 +24,8 @@ public class Ihm {
     }
     public String ihmDemanderNomJoueur(){
         Scanner sc =new Scanner(System.in);
-        affichage("\n?Entrez le nom du jouer : \n");
         String nomJoueur = sc.nextLine();
-        if(nomJoueur.equals("")){
+        if(nomJoueur.isEmpty()){
             affichage("\nErreur de saisie, veuillez entrer un nom valide qui n'est pas une chaine vide.\n");
             return ihmDemanderNomJoueur();
         }
@@ -36,9 +35,8 @@ public class Ihm {
     }
     public String ihmDemanderCoup(String nomJoueur){
         Scanner sc=new Scanner(System.in);
-        //trouver le moyen de parcourir les joueurs dans Jeu
         affichage("\n A "+nomJoueur+" de jouer. Vous pouvez jouer un coup de la forme \"m n\" :\n");
-        return sc.next();
+        return sc.next()+" "+sc.next();
     }
     public String ihmRejouer(){
         affichage("\nVoulez vous rejouer une partie?(y/n)\n");

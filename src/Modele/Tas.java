@@ -1,7 +1,7 @@
 package Modele;
 
 public class Tas implements Comparable<Tas> {
-    private int numTas;
+    private final int numTas;
     private int allumette;
 
     public Tas(int numTas){
@@ -10,24 +10,21 @@ public class Tas implements Comparable<Tas> {
     }
 
     public boolean estVide(){
-        return numTas<=0;
+        return allumette<=0;
     }
 
-    public boolean supprimerAllumettes(int nbAllumette) throws Exception {
-        if (nbAllumette>allumette){
-            throw new Exception("le nbre d'allumette restante est inferieur au coup demandé");
+    public void supprimerAllumettes(int nbAllumettes) throws WrongInputException {
+        if (nbAllumettes>allumette){
+            throw new WrongInputException("le nombre d'allumettes restante est inferieur au coup demandé");
         } else {
-            allumette=allumette-nbAllumette;
-            return true;
+            allumette=allumette-nbAllumettes;
         }
     }
 
     public int getNumTas() {
         return numTas;
     }
-    public int getAllumette (){
-        return allumette ;
-    }
+
 
     @Override
     public int compareTo(Tas o) {
