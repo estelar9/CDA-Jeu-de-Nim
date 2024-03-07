@@ -1,18 +1,16 @@
 package Modele;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Jeu {
     private Set<Partie> lesParties;
     private Map<Joueur,Integer>lesJoueurs;
+    private Joueur joueurCourant=null;
 
     public Jeu(int nbTas){
         lesParties=new TreeSet<>();
         lesParties.add(creerPartie(nbTas));
-        lesJoueurs = new HashMap<>();
+        lesJoueurs = new TreeMap<>();
 
     }
     public Partie creerPartie(int nbTas){
@@ -24,5 +22,17 @@ public class Jeu {
         lesJoueurs.put(nouveauJoueur,0);
     }
 
-    public String joueurSuivant();
+    public String joueurSuivant(){
+        if (joueurCourant==null){
+            joueurCourant=lesJoueurs.;
+        } else {
+            if (joueurCourant.getNumJoueur()==Joueur.getDenierJoueur()){
+                for (Joueur j : lesJoueurs){
+                    if(j.getNumJoueur()==1){
+                        joueurCourant=j;
+                    }
+                }
+            };
+        }
+    };
 }
