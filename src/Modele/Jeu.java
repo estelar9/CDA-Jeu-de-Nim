@@ -3,7 +3,7 @@ package Modele;
 import java.util.*;
 
 public class Jeu {
-    private Map<Joueur,Integer> lesJoueurs;
+    private final Map<Joueur,Integer> lesJoueurs;
     private Joueur joueurCourant;
     private Partie partieEnCours;
 
