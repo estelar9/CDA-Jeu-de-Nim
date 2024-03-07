@@ -3,9 +3,10 @@ import java.util.TreeMap;
 
 public class Partie {
     private int numPartie;
-    private TreeMap lesTas = new TreeMap<>;
+    private TreeMap lesTas;
 
     public Partie(int nbTas){
+        lesTas = new TreeMap<>();
         for(int i=1;i<=nbTas;i++){
             lesTas.put(i,creerTas(i));
         }
