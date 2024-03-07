@@ -7,6 +7,8 @@ import java.util.Set;
 
 public class ControleurJeuNim {
     private Ihm ihm;
+    int m;
+    int n ;
 
     public ControleurJeuNim(Ihm ihm){
         this.ihm=ihm;
@@ -43,6 +45,9 @@ public class ControleurJeuNim {
                 //trouver le moyen de parcourir les joueurs dans Jeu
                 ihm.affichage("\n A "+jeu.joueurSuivant()+" de jouer. Vous pouvez jouer un coup de la forme \"m n\" :\n");
                 String coup = ihm.ihmDemanderCoup();
+                String[] coupListe = coup.split(" ");
+                m = Integer.parseInt(coupListe[0]);
+                n = Integer.parseInt(coupListe[1]);
                 //traitement du string pour avoir un coup
                 try {
                     jeu.jouerCoup(m,n);
