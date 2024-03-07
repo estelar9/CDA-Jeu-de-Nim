@@ -18,11 +18,21 @@ public class Ihm {
                 return nbTas;
             }
         } else {
-            affichage("\nErreur de saisie, veuillez entrer un entier\n");
+            affichage("\nErreur de saisie, veuillez entrer un entier.\n");
             return ihmDemanderNbTas();
         }
     }
     public String ihmDemanderNomJoueur(){
+        Scanner sc =new Scanner(System.in);
+        affichage("\n?Entrez le nom du jouer : \n");
+        String nomJoueur = sc.nextLine();
+        if(nomJoueur.equals("")){
+            affichage("\nErreur de saisie, veuillez entrer un nom valide qui n'est pas une chaine vide.\n");
+            return ihmDemanderNomJoueur();
+        }
+        else{
+            return nomJoueur;
+        }
     }
     public String ihmDemanderCoup(){
         Scanner sc=new Scanner(System.in);

@@ -2,11 +2,11 @@ package Controleur;
 import Vue.*;
 import Modele.*;
 
+import javax.naming.ldap.Control;
+import java.util.Set;
+
 public class ControleurJeuNim {
     private Ihm ihm;
-    int n ;
-    int m;
-
 
     public ControleurJeuNim(Ihm ihm){
         this.ihm=ihm;
@@ -40,13 +40,9 @@ public class ControleurJeuNim {
             while(!jeu.testerGagnant()){
                 //implementer toString()
                 ihm.affichage(jeu.toString());
-
-
-                String coup = demanderCoup();
-                String[] coupListe = coup.split(" ");
-                m = Integer.parseInt(coupListe[0]);
-                n = Integer.parseInt(coupListe[1]);
-
+                //trouver le moyen de parcourir les joueurs dans Jeu
+                ihm.affichage("\n A "+jeu.joueurSuivant()+" de jouer. Vous pouvez jouer un coup de la forme \"m n\" :\n");
+                String coup = ihm.ihmDemanderCoup();
                 //traitement du string pour avoir un coup
                 try {
                     jeu.jouerCoup(m,n);
@@ -55,10 +51,5 @@ public class ControleurJeuNim {
                 }
             }
     }
-    private String demanderCoup(){
-         return ihm.ihmDemanderCoup();
-
-    }
-
 
 }
