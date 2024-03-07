@@ -52,7 +52,7 @@ public class ControleurJeuNim {
                 try {
                     jeu.jouerCoup(m,n);
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    throw new RuntimeException(e.getMessage());
                 }
             }
 
