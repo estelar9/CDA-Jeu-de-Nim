@@ -19,9 +19,10 @@ public class Jeu {
         return new Partie(nbTas);
     }
 
-    public boolean CreeJoueur(String nom){
+    public void creerJoueur(String nom){
         Joueur nouveauJoueur = new Joueur(nom);
         lesJoueurs.put(nouveauJoueur,0);
-        return true;
     }
+
+    public String joueurSuivant();
 }
