@@ -1,5 +1,6 @@
 package Modele;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -7,9 +8,11 @@ import java.util.TreeSet;
 public class Jeu {
     private Set<Partie> lesParties;
     private Map<Joueur,Integer>lesJoueurs;
+
     public Jeu(int nbTas){
         lesParties=new TreeSet<>();
         lesParties.add(creerPartie(nbTas));
+        lesJoueurs = new HashMap<>();
 
     }
     public Partie creerPartie(int nbTas){
