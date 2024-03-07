@@ -44,7 +44,7 @@ public class ControleurJeuNim {
         }
         //a la fin afficher
         ihm.affichage("\nFin de la Session, voici le tableau des scores : \n");
-        ihm.affichage("\n"++"\n");
+        ihm.affichage("\n"+jeu.vainqueurJeu()+"\n");
 
 
     }
