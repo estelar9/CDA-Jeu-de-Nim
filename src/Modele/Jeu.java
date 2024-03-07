@@ -21,6 +21,10 @@ public class Jeu {
         joueurCourant=nouveauJoueur;
     }
 
+    public String vainqueurJeu(){
+        //retourner un string qui dit qui a le plus gros score, sinon retourner qu'il y a ex aequo
+        //appeler cette fonction dans ControlleurJeu.jouer()
+    }
     public String joueurSuivant() {
         int suivant=(joueurCourant.getNumJoueur() == (Joueur.getDernierJoueur()-1))?1:joueurCourant.getNumJoueur()+1;
         for (Joueur j : lesJoueurs.keySet()) {
