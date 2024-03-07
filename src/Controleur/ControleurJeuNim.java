@@ -32,4 +32,5 @@ public class ControleurJeuNim {
         //ici tout le déroulement de la partie, a chaque étape de la partie on a un appel a la fonction ihm et un retour de données
     }
 
+
 }
