@@ -29,5 +29,14 @@ public class Ihm {
     }
     public String ihmRejouer(){
         // retourne un string genre "y" "o" "yes" "oui" ou "n" "no" etc on traitera le resultat dans le controleur
+        affichage("\nVoulez vous rejouer une partie?(y/n)\n");
+        Scanner sc=new Scanner(System.in);
+        String rep = sc.next();
+        if (rep.equals("y")||rep.equals("n")){
+            return rep;
+        } else {
+            affichage("\nErreur de saisie, veuillez entrer une reponse de la forme (y/n).\n");
+            return ihmRejouer();
+        }
     }
 }

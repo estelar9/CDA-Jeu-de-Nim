@@ -25,6 +25,9 @@ public class Tas implements Comparable<Tas> {
     public int getNumTas() {
         return numTas;
     }
+    public int getAllumette (){
+        return allumette ;
+    }
 
     @Override
     public int compareTo(Tas o) {
