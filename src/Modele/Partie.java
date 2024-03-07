@@ -1,5 +1,6 @@
 package Modele;
-import java.*;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Partie {
     private int numPartie;
@@ -16,19 +17,19 @@ public class Partie {
         return new Tas(n);
     }
     public boolean enleverAllumettes (int num , int nbAllumettes){
-        for (lesTas: Tas tas ) {
-            if (tas.getNumTas() == num){
-                return tas.supprimerAllumettes(nbAllumettes) ;
+        for (Tas tas: lesTas) {
+            if (tas.getNumTas() == num) {
+                return tas.supprimerAllumettes(nbAllumettes);
             }
-            return false ;
         }
+        return false ;
     }
     public boolean finDePartie(){
-        for (lesTas:Tas tas ) {
+        for (Tas tas : lesTas) {
             if (!tas.estVide()){
                 return false ;
             }
-            return true ;
         }
+        return true ;
     }
 }
