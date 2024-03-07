@@ -13,9 +13,9 @@ public class Tas implements Comparable<Tas> {
         return numTas<=0;
     }
 
-    public boolean supprimerAllumettes(int nbAllumette){
+    public boolean supprimerAllumettes(int nbAllumette) throws Exception {
         if (nbAllumette>allumette){
-            return false;
+            throw new Exception("le nbre d'allumette restante est inferieur au coup demandé");
         } else {
             allumette=allumette-nbAllumette;
             return true;

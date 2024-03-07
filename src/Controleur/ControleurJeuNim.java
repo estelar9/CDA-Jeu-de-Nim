@@ -55,6 +55,5 @@ public class ControleurJeuNim {
                     throw new RuntimeException(e);
                 }
             }
-    }
 
 }

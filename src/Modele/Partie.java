@@ -17,11 +17,16 @@ public class Partie {
         return new Tas(n);
     }
     public boolean enleverAllumettes (int num , int nbAllumettes){
-        for (Tas tas: lesTas) {
-            if (tas.getNumTas() == num) {
-                return tas.supprimerAllumettes(nbAllumettes);
+        try {
+            for (Tas tas: lesTas) {
+                if (tas.getNumTas() == num) {
+                    return tas.supprimerAllumettes(nbAllumettes);
+                }
             }
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
         }
+
         return false ;
     }
     // fonction qui teste si tous les tas passés en paramètre sont vides
