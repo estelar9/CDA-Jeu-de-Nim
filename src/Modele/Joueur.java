@@ -18,15 +18,7 @@ public class Joueur {
         return numJoueur;
     }
 
-    public void setNumJoueur(int numJoueur) {
-        this.numJoueur = numJoueur;
-    }
-
-    public String getNomJouer() {
+    public String getNomJoueur() {
         return nomJoueur;
-    }
-
-    public void setNomJouer(String nomJouer) {
-        this.nomJoueur = nomJouer;
     }
 }

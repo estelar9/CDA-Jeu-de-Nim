@@ -34,17 +34,13 @@ public class Ihm {
             return nomJoueur;
         }
     }
-    public String ihmDemanderCoup(){
+    public String ihmDemanderCoup(String nomJoueur){
         Scanner sc=new Scanner(System.in);
         //trouver le moyen de parcourir les joueurs dans Jeu
-        affichage("\n A "+jeu.joueurSuivant()+" de jouer. Vous pouvez jouer un coup de la forme \"m n\" :\n");
-        while (!sc.hasNext()) {
-            affichage("\n A "+jeu.joueurSuivant()+" de jouer. Vous pouvez jouer un coup de la forme \"m n\" :\n");
-        }
+        affichage("\n A "+nomJoueur+" de jouer. Vous pouvez jouer un coup de la forme \"m n\" :\n");
         return sc.next();
     }
     public String ihmRejouer(){
-        // retourne un string genre "y" "o" "yes" "oui" ou "n" "no" etc on traitera le resultat dans le controleur
         affichage("\nVoulez vous rejouer une partie?(y/n)\n");
         Scanner sc=new Scanner(System.in);
         String rep = sc.next();
