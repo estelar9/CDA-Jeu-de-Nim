@@ -1,6 +1,6 @@
 package Modele;
 
-public class Tas {
+public class Tas implements Comparable<Tas> {
     private int numTas;
     private int allumette;
 
@@ -22,4 +22,12 @@ public class Tas {
         }
     }
 
+    private int getNumTas() {
+        return numTas;
+    }
+
+    @Override
+    public int compareTo(Tas o) {
+        return this.numTas-o.getNumTas();
+    }
 }
