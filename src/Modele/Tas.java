@@ -22,7 +22,7 @@ public class Tas implements Comparable<Tas> {
         }
     }
 
-    private int getNumTas() {
+    public int getNumTas() {
         return numTas;
     }
 
