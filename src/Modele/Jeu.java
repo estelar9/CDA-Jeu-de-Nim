@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Jeu {
     private final Map<Joueur,Integer> lesJoueurs;
+    private final int[] scores = new int[]{0,0};
     private Joueur joueurCourant;
     private Partie partieEnCours;
 
@@ -20,10 +21,18 @@ public class Jeu {
         lesJoueurs.put(nouveauJoueur,0);
         joueurCourant=nouveauJoueur;
     }
-
+    public void mettreAJourScore(Joueur joueur){
+        scores[joueur.getNumJoueur()-1] = ++scores[joueur.getNumJoueur()-1];
+    }
     public String vainqueurJeu(){
         //retourner un string qui dit qui a le plus gros score, sinon retourner qu'il y a ex aequo
         //appeler cette fonction dans ControlleurJeu.jouer()
+        if (scores[0]==scores[1]){
+            return "Félicitations, il y a ex aequo ";
+        }
+
+
+        return joueurCourant.getNomJoueur()+ " a "+scores[joueurCourant.getNumJoueur()-1]+" victoire(s)";
     }
     public String joueurSuivant() {
         int suivant=(joueurCourant.getNumJoueur() == (Joueur.getDernierJoueur()-1))?1:joueurCourant.getNumJoueur()+1;

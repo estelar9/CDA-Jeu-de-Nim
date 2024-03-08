@@ -79,6 +79,7 @@ public class ControleurJeuNim {
                 }
             }
             //afficher le gagnant de la partie en cours
-        ihm.affichage("\nFélicitations "+jeu.getJoueurCourant()+", vous avez remporté la partie!\n");
+            ihm.affichage("\nFélicitations "+jeu.getJoueurCourant().getNomJoueur() +", vous avez remporté la partie!\n");
+            jeu.mettreAJourScore(jeu.getJoueurCourant());
     }
 }
