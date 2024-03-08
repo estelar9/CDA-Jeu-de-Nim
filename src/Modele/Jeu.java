@@ -32,7 +32,7 @@ public class Jeu {
         }
 
 
-        return joueurCourant.getNomJoueur()+ " a "+scores[joueurCourant.getNumJoueur()-1]+" victoire(s)";
+        return joueurCourant.getNomJoueur()+ " gagne avec "+scores[joueurCourant.getNumJoueur()-1]+" victoire(s)";
     }
     public String joueurSuivant() {
         int suivant=(joueurCourant.getNumJoueur() == (Joueur.getDernierJoueur()-1))?1:joueurCourant.getNumJoueur()+1;
