@@ -30,9 +30,7 @@ public class Jeu {
         if (scores[0]==scores[1]){
             return "Félicitations, il y a ex aequo ";
         }
-
-
-        return joueurCourant.getNomJoueur()+ " gagne avec "+scores[joueurCourant.getNumJoueur()-1]+" victoire(s)";
+        return "Félicitations "+"\u001B[32m"+joueurCourant.getNomJoueur()+"\u001B[0m"+"! Vous gagnez avec "+"\u001B[33m"+scores[joueurCourant.getNumJoueur()-1]+"\u001B[0m"+" victoire(s).";
     }
     public String joueurSuivant() {
         int suivant=(joueurCourant.getNumJoueur() == (Joueur.getDernierJoueur()-1))?1:joueurCourant.getNumJoueur()+1;

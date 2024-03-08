@@ -19,10 +19,10 @@ public class ControleurJeuNim {
         //partie créés
 
         //creation des joueurs
-        ihm.affichage("\nEntrez le nom du joueur 1:\n");
+        ihm.affichage("\nEntrez le nom du "+ihm.toGreen("joueur 1")+":\n");
         String nomJ1=ihm.ihmDemanderNomJoueur();
 
-        ihm.affichage("\nEntrez le nom du joueur 2:\n");
+        ihm.affichage("\nEntrez le nom du "+ihm.toGreen("joueur 2")+":\n");
         String nomJ2=ihm.ihmDemanderNomJoueur();
 
         if (nomJ1.equals(nomJ2)){
@@ -43,7 +43,7 @@ public class ControleurJeuNim {
             jouerPartie(jeu);
         }
         //a la fin afficher
-        ihm.affichage("\nFin de la Session, voici le tableau des scores : \n");
+        ihm.affichage("\nFin de la Session. \n");
         ihm.affichage("\n"+jeu.vainqueurJeu()+"\n");
 
 
@@ -67,12 +67,12 @@ public class ControleurJeuNim {
                         break;
                     } catch (Exception e1) {
                         //ici il faut generer des exceptions selon le coup entré(est ce que le tas existe, est ce qu'il y a assez d'allumettes dans le tas)
-                        ihm.affichage(e1.getMessage());
+                        ihm.affichage(ihm.toRed(e1.getMessage()));
                         //ici je met une pause de 3 secondes pour que la personne ait le temps de voir l'erreur avant de réafficher le jeu
                         try {
                             TimeUnit.SECONDS.sleep(1);
                         } catch (Exception e2) {
-                            ihm.affichage(e2.getMessage());
+                            continue;
                         }
                         coup = ihm.ihmDemanderCoup(joueurCourant);
                     }
