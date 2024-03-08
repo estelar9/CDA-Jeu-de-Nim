@@ -38,4 +38,26 @@ public class Partie {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        String tasString = "";
+        for (Tas tas : lesTas){
+            tasString += "\n" + tas.toString() + "\n";
+        }
+        tasString += "Affichage des tas : \n";
+        for (Tas tas : lesTas) {
+            int numEspace = lesTas.size() - tas.getNumTas();
+            for (int i = 0; i < numEspace; i++) {
+                tasString += " ";
+            }
+            int numAllumettes = tas.getAllumette();
+            for (int i = 0; i < numAllumettes; i++) {
+                tasString += "|";
+            }
+            tasString += "\n";
+        }
+        return tasString;
+    }
+
 }

@@ -49,4 +49,9 @@ public class Jeu {
     public void nouvellePartie(int nbTas){
         partieEnCours=creerPartie(nbTas);
     }
+
+    @Override
+    public String toString() {
+        return partieEnCours.toString();
+    }
 }

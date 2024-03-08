@@ -30,4 +30,12 @@ public class Tas implements Comparable<Tas> {
     public int compareTo(Tas o) {
         return this.numTas-o.getNumTas();
     }
+
+    public int getAllumette() {
+        return allumette;
+    }
+    @Override
+    public String toString() {
+        return "numTas" + numTas + " -> allumette " + allumette + "\n";
+    }
 }
