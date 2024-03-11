@@ -36,7 +36,27 @@ public class Ihm {
     public String ihmDemanderCoup(String nomJoueur){
         Scanner sc=new Scanner(System.in);
         affichage("\n A "+toGreen(nomJoueur)+" de jouer. Vous pouvez jouer un coup de la forme \""+toRed("m n")+"\" :\n");
-        return sc.next()+" "+sc.next();
+        if(sc.hasNextInt()){
+            int numTas=sc.nextInt();
+            if (numTas<=0) {
+                affichage(toRed("\nErreur de saisie, veuillez entrer un chiffre supérieur ou égal à 0.\n"));
+                return ihmDemanderCoup(nomJoueur);
+            }
+            if(sc.hasNextInt()){
+                int nbAllu = sc.nextInt();
+                if (nbAllu<=0) {
+                    affichage(toRed("\nErreur de saisie, veuillez entrer un chiffre supérieur ou égal à 0.\n"));
+                    return ihmDemanderCoup(nomJoueur);
+                }
+                return numTas+" "+nbAllu;
+            } else {
+                affichage(toRed("\nErreur de saisie pour le choix du nombre d'allumettes, veuillez entrer un chiffre.\n"));
+                return ihmDemanderCoup(nomJoueur);
+            }
+        } else {
+            affichage(toRed("\nErreur de saisie pour le choix du tas, veuillez entrer un chiffre.\n"));
+        }
+        return ihmDemanderCoup(nomJoueur);
     }
     public String ihmRejouer(){
         affichage("\nVoulez vous rejouer une partie?("+toGreen("y")+"/"+toRed("n")+")\n");
@@ -45,7 +65,7 @@ public class Ihm {
         if (rep.equals("y")||rep.equals("n")){
             return rep;
         } else {
-            affichage(toRed("\nErreur de saisie, veuillez réessayer.\n"));
+            affichage(toRed("\nNous n'avons pas compris votre réponse, veuillez réessayer.\n"));
             return ihmRejouer();
         }
     }
