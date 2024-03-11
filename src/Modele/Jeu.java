@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Jeu {
     private final Map<Joueur,Integer> lesJoueurs;
-    private final int[] scores = new int[]{0,0};
     private Joueur joueurCourant;
     private Partie partieEnCours;
 
@@ -21,16 +20,30 @@ public class Jeu {
         lesJoueurs.put(nouveauJoueur,0);
         joueurCourant=nouveauJoueur;
     }
-    public void mettreAJourScore(Joueur joueur){
-        scores[joueur.getNumJoueur()-1] = ++scores[joueur.getNumJoueur()-1];
+    public void mettreAJourScore(String joueur){
+        for(Joueur j : lesJoueurs.keySet()){
+            if(j.getNomJoueur().equals(joueur)){
+                lesJoueurs.replace(j,lesJoueurs.get(j)+1);
+            }
+        }
     }
     public String vainqueurJeu(){
-        //retourner un string qui dit qui a le plus gros score, sinon retourner qu'il y a ex aequo
-        //appeler cette fonction dans ControlleurJeu.jouer()
-        if (scores[0]==scores[1]){
+
+        String j1=joueurCourant.getNomJoueur();
+        int resJ1=lesJoueurs.get(joueurCourant);
+
+        joueurSuivant();
+
+        String j2=joueurCourant.getNomJoueur();
+        int resJ2=lesJoueurs.get(joueurCourant);
+
+        if (resJ1==resJ2){
             return "Félicitations, il y a ex aequo ";
+        } else if (resJ1>resJ2){
+            return "Félicitations "+"\u001B[32m"+j1+"\u001B[0m"+"! Vous gagnez avec "+"\u001B[33m"+resJ1+"\u001B[0m"+" victoire(s).";
+        } else {
+            return "Félicitations "+"\u001B[32m"+j2+"\u001B[0m"+"! Vous gagnez avec "+"\u001B[33m"+resJ2+"\u001B[0m"+" victoire(s).";
         }
-        return "Félicitations "+"\u001B[32m"+joueurCourant.getNomJoueur()+"\u001B[0m"+"! Vous gagnez avec "+"\u001B[33m"+scores[joueurCourant.getNumJoueur()-1]+"\u001B[0m"+" victoire(s).";
     }
     public String joueurSuivant() {
         int suivant=(joueurCourant.getNumJoueur() == (Joueur.getDernierJoueur()-1))?1:joueurCourant.getNumJoueur()+1;
@@ -49,8 +62,8 @@ public class Jeu {
         partieEnCours.enleverAllumettes(m,n);
     }
 
-    public Joueur getJoueurCourant() {
-        return joueurCourant;
+    public String getJoueurCourant() {
+        return joueurCourant.getNomJoueur();
     }
 
     public void nouvellePartie(int nbTas){
