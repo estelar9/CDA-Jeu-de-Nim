@@ -1,14 +1,13 @@
-package Modele;
-import java.util.Set;
-import java.util.TreeSet;
+package modele;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Partie {
-    //suggestion d'amelioration : faire une liste de tas plutot qu'un set, pour y acceder plus simplement avec lesTas[numTas]
-    private final Set<Tas> lesTas;
+    private final List<Tas> lesTas;
 
     //a l'initialisation la partie cree tout les tas
     public Partie(int nbTas){
-        lesTas = new TreeSet<>();
+        lesTas = new ArrayList<>();
         for(int i=1;i<=nbTas;i++){
             lesTas.add(creerTas(i));
         }
@@ -21,13 +20,11 @@ public class Partie {
 
     //enleve n allumettes au tas m
     public void enleverAllumettes (int numTas , int nbAllumettes) throws WrongInputException {
-            for (Tas tas: lesTas) {
-                if (tas.getNumTas() == numTas) {
-                    tas.supprimerAllumettes(nbAllumettes);
-                    return;
-                }
-            }
+        try {
+            lesTas.get(numTas - 1).supprimerAllumettes(nbAllumettes);
+        } catch (Exception e) {
             throw new WrongInputException("Mince ! le tas demandé n'existe pas");
+        }
 
     }
     public boolean finDePartie() {
@@ -41,10 +38,7 @@ public class Partie {
 
     @Override
     public String toString() {
-        String tasString = "";
-        for (Tas tas : lesTas){
-            tasString += "\n" + tas.toString() + "\n";
-        }
+        String tasString = "\n";
         tasString += "Affichage des tas : \n";
         for (Tas tas : lesTas) {
             int numEspace = lesTas.size() - tas.getNumTas();
