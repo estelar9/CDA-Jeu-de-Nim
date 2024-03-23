@@ -1,4 +1,5 @@
 package Modele;
+/*🟡🔴*/
 
 public class Joueur implements Comparable<Joueur>{
     private final int numJoueur ;
